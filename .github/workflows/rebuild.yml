@@ -2,7 +2,7 @@ name: develop deployment
 on:
   push:
     branches:
-      - 'main'
+      - "main"
 jobs:
   deployment:
     runs-on: ubuntu-latest
@@ -26,12 +26,11 @@ jobs:
 
       # SSH into EC2 and execute the shell script
       - name: Deploy using EC2 script
-        uses: appleboy/ssh-action@v0.1.4
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          port: 22
           script: |
             chmod +x /script/deploy.sh
             sh /script/deploy.sh
